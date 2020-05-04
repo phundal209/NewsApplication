@@ -1,15 +1,14 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion deps.buildConfig.compileSdkVersion
     buildToolsVersion deps.buildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.news.app"
         minSdkVersion deps.buildConfig.minSdkVersion
         targetSdkVersion deps.buildConfig.targetSdkVersion
         versionCode 1
@@ -24,29 +23,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    viewBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
 }
 
-
 dependencies {
-    api project(deps.internal.newsPresentation)
+    api project(deps.internal.newsApi)
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.external.kotlinStndLib
     implementation deps.external.appCompat
     implementation deps.external.coreKtx
-
-    implementation deps.square.dagger
-    implementation deps.square.daggerandroid
-
-    kapt deps.kapt.daggerCompiler
-    kapt deps.kapt.daggerProcessor
-
+    implementation deps.androidx.fragment
+    implementation deps.external.inject
+    implementation deps.external.lifecycleext
+    implementation deps.external.materialDesign
     implementation deps.navigation.navigationFragment
     implementation deps.navigation.navigationUiKtx
-    implementation deps.navigation.navigationDyanmic
-
-    testImplementation deps.test.junit
-    androidTestImplementation deps.test.androidxjunit
-    androidTestImplementation deps.test.espressocore
 }

@@ -49,6 +49,11 @@ def external = [
         coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
 ]
 
+def internal = [
+        newsApi               : ":news-api",
+        newsPresentation      : ":news-presentation",
+]
+
 def test = [
         junit                 : 'junit:junit:4.12',
         androidxjunit         : 'androidx.test.ext:junit:1.1.1',
@@ -84,6 +89,7 @@ ext.deps = [
         "buildConfig" : buildConfig,
         "androidx"    : androidx,
         "external"    : external,
+        "internal"    : internal,
         "kapt"        : kapt,
         "square"      : square,
         "versions"    : versions,

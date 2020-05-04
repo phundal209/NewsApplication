@@ -1,3 +1,4 @@
 rootProject.name='NewsApp'
 include ':app'
 include ':news-api'
+include ':news-presentation'
