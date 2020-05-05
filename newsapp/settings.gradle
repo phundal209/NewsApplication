@@ -1,4 +1,6 @@
 rootProject.name='NewsApp'
 include ':app'
-include ':news-api'
-include ':news-presentation'
+include ':news:news-api'
+include ':news:news-presentation'
+include ':media:media-api'
+include ':media:media-data'

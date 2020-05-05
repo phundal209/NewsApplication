@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         navigate()
     }
 
-    fun navigate() {
+    private fun navigate() {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navController = host.navController
         navController.navigate(R.id.newsFragment)

@@ -15,6 +15,7 @@ def versions = [
         lifecycleext        : '2.0.0',
         material            : '1.2.0-alpha05',
         coroutines          : '1.3.2',
+        coil                : '0.10.1',
 ]
 
 def androidx = [
@@ -47,11 +48,14 @@ def external = [
         lifecyclecompiler     : "androidx.lifecycle:lifecycle-compiler:${versions.lifecycleext}",
         materialDesign        : "com.google.android.material:material:${versions.material}",
         coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
+        coil                  : "io.coil-kt:coil:${versions.coil}"
 ]
 
 def internal = [
-        newsApi               : ":news-api",
-        newsPresentation      : ":news-presentation",
+        newsApi               : ":news:news-api",
+        newsPresentation      : ":news:news-presentation",
+        mediaApi              : ":media:media-api",
+        mediaData              :":media:media-data",
 ]
 
 def test = [
