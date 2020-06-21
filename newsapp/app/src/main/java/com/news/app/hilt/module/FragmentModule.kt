@@ -21,6 +21,6 @@ abstract class FragmentModule {
     @Binds
     @IntoMap
     @FragmentKey(NewsFragment::class)
-    abstract fun bindNesFragment(impl: NewsFragment): Fragment
+    abstract fun bindNewsFragment(impl: NewsFragment): Fragment
 
 }

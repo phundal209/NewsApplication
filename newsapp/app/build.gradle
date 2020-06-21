@@ -35,6 +35,7 @@ android {
 
 dependencies {
     api project(deps.internal.newsPresentation)
+    api project(deps.internal.newsData)
     api project(deps.internal.mediaApi)
     api project(deps.internal.mediaData)
 
@@ -45,6 +46,13 @@ dependencies {
 
     implementation deps.square.dagger
     implementation deps.square.daggerandroid
+
+    implementation deps.square.okHttp
+    implementation deps.square.okHttpLoggingInterceptor
+    implementation deps.square.retrofit
+    implementation deps.external.moshi
+    implementation deps.external.moshiConverter
+    kapt deps.kapt.moshiKapt
 
     implementation deps.square.hiltAndroid
     kapt deps.square.hiltCompiler

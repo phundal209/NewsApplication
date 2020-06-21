@@ -6,5 +6,10 @@ dependencies {
     implementation deps.external.kotlinStndLib
 }
 
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xallow-result-return-type"]
+}
+
 sourceCompatibility = "7"
 targetCompatibility = "7"

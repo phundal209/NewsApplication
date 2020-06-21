@@ -1,13 +1,13 @@
 package com.news.news.presentation
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.news.news.api.NewsApi
 import com.news.news.api.NewsCategories
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewsViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle
+class NewsViewModel @Inject constructor(
+    private val newsApi: NewsApi
 ): ViewModel() {
     private val _newsViewStateLiveData: MutableLiveData<NewsViewState> = MutableLiveData()
     val newsViewStateLiveData: LiveData<NewsViewState>
@@ -22,8 +22,22 @@ class NewsViewModel @ViewModelInject constructor(
         pageSize: Int? ,
         page: Int?
     ) {
+        _newsViewStateLiveData.postValue(NewsViewState.Loading)
         viewModelScope.launch {
-
+            val topHeadlines = newsApi.getTopHeadlines(
+                country = country,
+                category = category,
+                sources = sources,
+                query = query,
+                pageSize = pageSize,
+                page = page
+            )
+            topHeadlines.onSuccess {
+                _newsViewStateLiveData.postValue(NewsViewState.Success(it))
+            }
+            topHeadlines.onFailure {
+                _newsViewStateLiveData.postValue(NewsViewState.Error(it.message ?: "Api Failure"))
+            }
         }
     }
 }

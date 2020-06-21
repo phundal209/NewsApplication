@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/media/media-data" />
             <option value="$PROJECT_DIR$/news" />
             <option value="$PROJECT_DIR$/news/news-api" />
+            <option value="$PROJECT_DIR$/news/news-data" />
             <option value="$PROJECT_DIR$/news/news-presentation" />
           </set>
         </option>

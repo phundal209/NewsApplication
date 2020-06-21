@@ -32,8 +32,8 @@ data class NewsResponse(
 )
 
 sealed class NewsStatus {
-    object Success : NewsStatus()
-    data class Error(val message: String, val code: Int)
+    object Success: NewsStatus()
+    data class Error(val message: String, val code: String): NewsStatus()
 }
 
 data class NewsArticles(

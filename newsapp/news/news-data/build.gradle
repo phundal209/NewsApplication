@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
@@ -24,9 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    viewBinding {
-        enabled = true
-    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -34,26 +30,22 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
 }
 
 dependencies {
     api project(deps.internal.newsApi)
-    api project(deps.internal.mediaApi)
 
     implementation deps.external.kotlinStndLib
-    implementation deps.external.appCompat
-    implementation deps.external.coreKtx
-    implementation deps.androidx.paging
-    implementation deps.androidx.fragment
     implementation deps.external.inject
     implementation deps.external.lifecycleext
     implementation deps.external.materialDesign
-    implementation deps.navigation.navigationFragment
-    implementation deps.navigation.navigationUiKtx
+    implementation deps.external.moshi
+    implementation deps.square.retrofit
 
     implementation deps.square.hiltAndroid
-    implementation deps.square.hiltLifecycle
     kapt deps.square.hiltCompiler
+    kapt deps.kapt.moshiKapt
 }

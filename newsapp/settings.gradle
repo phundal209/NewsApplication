@@ -1,3 +1,4 @@
+include ':news:news-data'
 rootProject.name='NewsApp'
 include ':app'
 include ':news:news-api'

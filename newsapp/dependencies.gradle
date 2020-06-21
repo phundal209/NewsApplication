@@ -18,10 +18,14 @@ def versions = [
         coil                : '0.10.1',
         hiltVersion         : '2.28-alpha',
         hiltLifecycleVersion: '1.0.0-alpha01',
+        paging              : '2.1.2',
+        moshiKotlinVersion  : '1.9.3',
+        moshiCallConverter  : '2.4.0',
 ]
 
 def androidx = [
         fragment             : "androidx.fragment:fragment-ktx:${versions.fragment}",
+        paging               : "androidx.paging:paging-runtime:${versions.paging}",
 ]
 
 def build = [
@@ -51,11 +55,14 @@ def external = [
         lifecyclecompiler     : "androidx.lifecycle:lifecycle-compiler:${versions.lifecycleext}",
         materialDesign        : "com.google.android.material:material:${versions.material}",
         coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
-        coil                  : "io.coil-kt:coil:${versions.coil}"
+        coil                  : "io.coil-kt:coil:${versions.coil}",
+        moshi                 : "com.squareup.moshi:moshi-kotlin:${versions.moshiKotlinVersion}",
+        moshiConverter        : "com.squareup.retrofit2:converter-moshi:${versions.moshiCallConverter}",
 ]
 
 def internal = [
         newsApi               : ":news:news-api",
+        newsData              : ":news:news-data",
         newsPresentation      : ":news:news-presentation",
         mediaApi              : ":media:media-api",
         mediaData              :":media:media-data",
@@ -89,7 +96,7 @@ def navigation = [
 def kapt = [
         daggerCompiler : "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
         daggerProcessor: "com.google.dagger:dagger-android-processor:${versions.daggerVersion}",
-        moshiKapt      : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+        moshiKapt      : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshiKotlinVersion}"
 ]
 
 ext.deps = [

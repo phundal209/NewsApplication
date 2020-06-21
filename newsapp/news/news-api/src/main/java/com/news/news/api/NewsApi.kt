@@ -35,7 +35,7 @@ interface NewsApi {
                                 sources: String? = "us",
                                 query: String? = null,
                                 pageSize: Int? = 20,
-                                page: Int? = 1) : NewsResponse
+                                page: Int? = 1) : Result<NewsResponse>
 
 
     /**
@@ -85,5 +85,5 @@ interface NewsApi {
                            language: String? = "en",
                            sortBy: NewsFilters? = NewsFilters.PublishedAt,
                            pageSize: Int? = 20,
-                           page: Int? = 1) : NewsResponse
+                           page: Int? = 1) : Result<NewsResponse>
 }
