@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.news.media.api.ImageProvider
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewsFragment @Inject constructor(
-    private val newsViewModel: NewsViewModel,
     private val imageProvider: ImageProvider
 ) : Fragment() {
+    private val newsViewModel: NewsViewModel by viewModels()
 
     private val observer = Observer<NewsViewState> {
         when(it) {

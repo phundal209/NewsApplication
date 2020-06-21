@@ -1,11 +1,14 @@
 package com.news.app
 
-import com.news.app.dagger.component.DaggerApplicationComponent
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import android.util.Log
+import dagger.hilt.android.HiltAndroidApp
 
-class NewsApplication : DaggerApplication() {
+@HiltAndroidApp
+class NewsApplication : Application() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerApplicationComponent.factory().create(applicationContext)
+    override fun onCreate() {
+        super.onCreate()
+        Log.d("NewsApplication", "App created")
+    }
 }

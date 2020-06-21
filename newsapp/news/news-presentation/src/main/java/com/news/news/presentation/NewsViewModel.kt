@@ -1,14 +1,13 @@
 package com.news.news.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.news.news.api.NewsCategories
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewsViewModel @Inject constructor(
+class NewsViewModel @ViewModelInject constructor(
+    @Assisted private val savedStateHandle: SavedStateHandle
 ): ViewModel() {
     private val _newsViewStateLiveData: MutableLiveData<NewsViewState> = MutableLiveData()
     val newsViewStateLiveData: LiveData<NewsViewState>

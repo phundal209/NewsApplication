@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->/Users/phundal/NewsApplication/newsapp/media/media-data/src/main/AndroidManifest.xml
+8-->/Users/phundal2091/Desktop/NewsApplication/newsapp/media/media-data/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->/Users/phundal/NewsApplication/newsapp/media/media-data/src/main/AndroidManifest.xml
+9-->/Users/phundal2091/Desktop/NewsApplication/newsapp/media/media-data/src/main/AndroidManifest.xml
 10
 11</manifest>

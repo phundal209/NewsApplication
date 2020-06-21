@@ -1,4 +1,4 @@
-package com.news.app.dagger.annotation
+package com.news.app.hilt.annotation
 
 import androidx.fragment.app.Fragment
 import dagger.MapKey

@@ -1,4 +1,4 @@
-package com.news.app.dagger.factory
+package com.news.app.hilt.factory
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory

@@ -1,15 +1,18 @@
-package com.news.app.dagger.module
+package com.news.app.hilt.module
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.news.app.dagger.annotation.FragmentKey
-import com.news.app.dagger.factory.FragmentInjectionFactory
+import com.news.app.hilt.annotation.FragmentKey
+import com.news.app.hilt.factory.FragmentInjectionFactory
 import com.news.news.presentation.NewsFragment
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.multibindings.IntoMap
 
 @Module
+@InstallIn(ActivityComponent::class)
 abstract class FragmentModule {
 
     @Binds

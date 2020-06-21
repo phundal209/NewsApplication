@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion deps.buildConfig.compileSdkVersion
@@ -41,7 +42,6 @@ dependencies {
     api project(deps.internal.newsApi)
     api project(deps.internal.mediaApi)
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.external.kotlinStndLib
     implementation deps.external.appCompat
     implementation deps.external.coreKtx
@@ -51,4 +51,8 @@ dependencies {
     implementation deps.external.materialDesign
     implementation deps.navigation.navigationFragment
     implementation deps.navigation.navigationUiKtx
+
+    implementation deps.square.hiltAndroid
+    implementation deps.square.hiltLifecycle
+    kapt deps.square.hiltCompiler
 }

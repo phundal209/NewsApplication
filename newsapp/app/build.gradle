@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion deps.buildConfig.compileSdkVersion
@@ -43,6 +45,9 @@ dependencies {
 
     implementation deps.square.dagger
     implementation deps.square.daggerandroid
+
+    implementation deps.square.hiltAndroid
+    kapt deps.square.hiltCompiler
 
     kapt deps.kapt.daggerCompiler
     kapt deps.kapt.daggerProcessor

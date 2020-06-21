@@ -14,6 +14,7 @@ buildscript {
         classpath deps.build.androidKotlin
         classpath deps.build.kotlinGradle
         classpath deps.build.navArgs
+        classpath deps.build.hilt
 
 
         // NOTE: Do not place your application dependencies here; they belong

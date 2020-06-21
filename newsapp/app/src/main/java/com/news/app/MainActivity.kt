@@ -2,29 +2,18 @@ package com.news.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentFactory
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import com.news.app.hilt.entrypoint.MainActivityEntryPoint
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
-
-    @Inject
-    lateinit var fragmentFactory: FragmentFactory
-
-    @Inject
-    lateinit var viewModelModule: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        supportFragmentManager.fragmentFactory = fragmentFactory
+        val entryPoint: MainActivityEntryPoint = EntryPointAccessors.
+                    fromActivity(this, MainActivityEntryPoint::class.java)
+        supportFragmentManager.fragmentFactory = entryPoint.getFragmentFactory()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigate()
@@ -35,7 +24,4 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         val navController = host.navController
         navController.navigate(R.id.newsFragment)
     }
-
-    override fun androidInjector(): AndroidInjector<Any> =
-        androidInjector
 }
