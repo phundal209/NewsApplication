@@ -1,4 +1,4 @@
-package com.news.news.presentation
+package com.news.news.presentation.view
 
 import android.content.Intent
 import android.net.Uri
@@ -7,15 +7,15 @@ import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.news.media.api.ImageProvider
-import com.news.news.api.NewsArticle
 import com.news.news.api.NewsCategory
+import com.news.news.presentation.*
+import com.news.news.presentation.adapter.NewsRecyclerAdapter
 import com.news.news.presentation.databinding.FragmentNewsBinding
+import com.news.news.presentation.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.IndexOutOfBoundsException
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,16 +27,16 @@ class NewsFragment @Inject constructor(
     private val binding get() = _binding!!
     private var newsRecyclerAdapter: NewsRecyclerAdapter? = null
 
-    private val observer = Observer<NewsObservableState> {
+    private val observer = Observer<NewsViewState> {
         when(it) {
-            is NewsObservableState.Loading -> {
+            is NewsViewState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
             }
-            is NewsObservableState.Success -> {
+            is NewsViewState.Success -> {
                 binding.progressBar.visibility = View.GONE
                 newsRecyclerAdapter?.setData(it.articles)
             }
-            is NewsObservableState.Error -> {
+            is NewsViewState.Error -> {
                 binding.progressBar.visibility = View.GONE
                 val serverError = getString(R.string.server_error, it)
                 Snackbar.make(binding.filter, serverError, Snackbar.LENGTH_SHORT)
@@ -48,7 +48,11 @@ class NewsFragment @Inject constructor(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        newsRecyclerAdapter = NewsRecyclerAdapter(imageProvider, this)
+        newsRecyclerAdapter =
+            NewsRecyclerAdapter(
+                imageProvider,
+                this
+            )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

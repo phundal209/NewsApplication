@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.news.app.hilt.annotation.ViewModelKey
 import com.news.app.hilt.factory.DaggerInjectionViewModelFactory
-import com.news.news.presentation.NewsViewModel
+import com.news.news.presentation.viewmodel.NewsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

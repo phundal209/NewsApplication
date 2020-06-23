@@ -1,4 +1,4 @@
-package com.news.news.presentation
+package com.news.news.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,17 +6,22 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.news.media.api.ImageProvider
 import com.news.news.api.NewsArticle
+import com.news.news.presentation.view.NewsItemCallback
 import com.news.news.presentation.databinding.NewsViewItemBinding
 
 class NewsRecyclerAdapter(private val imageProvider: ImageProvider,
-                          private val newsItemCallback: NewsItemCallback)
+                          private val newsItemCallback: NewsItemCallback
+)
     : RecyclerView.Adapter<NewsItemViewHolder>() {
     private var newsArticles: MutableList<NewsArticle> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         val newsViewBinding: NewsViewItemBinding = NewsViewItemBinding.inflate(layoutInflater, parent, false)
-        return NewsItemViewHolder(newsViewBinding, imageProvider)
+        return NewsItemViewHolder(
+            newsViewBinding,
+            imageProvider
+        )
     }
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
@@ -28,7 +33,11 @@ class NewsRecyclerAdapter(private val imageProvider: ImageProvider,
     }
 
     fun setData(articles: List<NewsArticle>) {
-        val diffCallback = NewsDiffUtil(newsArticles, articles)
+        val diffCallback =
+            NewsDiffUtil(
+                newsArticles,
+                articles
+            )
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         newsArticles.clear()
         newsArticles.addAll(articles)

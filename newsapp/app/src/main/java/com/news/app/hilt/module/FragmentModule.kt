@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.news.app.hilt.annotation.FragmentKey
 import com.news.app.hilt.factory.FragmentInjectionFactory
-import com.news.news.presentation.NewsFragment
+import com.news.news.presentation.view.NewsFragment
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

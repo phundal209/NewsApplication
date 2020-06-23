@@ -1,4 +1,4 @@
-package com.news.news.presentation
+package com.news.news.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.news.news.api.NewsArticle
