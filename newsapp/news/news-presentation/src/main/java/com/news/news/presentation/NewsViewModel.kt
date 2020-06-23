@@ -10,9 +10,9 @@ class NewsViewModel @Inject constructor(
 ): ViewModel() {
     val newsResponseLiveData: LiveData<NewsObservableState> = newsRepository.getHeadlinesLiveData()
 
-    fun getHotNews(category: NewsCategory) {
+    fun getHotNews(category: NewsCategory, query: String? = null) {
         viewModelScope.launch {
-            newsRepository.getHotHeadlines(category)
+            newsRepository.getHotHeadlines(category, query)
         }
     }
 }

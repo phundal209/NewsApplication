@@ -31,9 +31,9 @@ interface NewsApi {
      * @return [NewsResponse]
      */
     suspend fun getTopHeadlines(category: NewsCategory? = NewsCategory.General,
+                                query: String? = null,
                                 country: String? = "us",
                                 sources: String? = null,
-                                query: String? = null,
                                 pageSize: Int? = 20,
                                 page: Int? = 1) : Result<NewsResponse>
 

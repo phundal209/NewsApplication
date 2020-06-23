@@ -13,9 +13,9 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsObservableStateLiveData: LiveData<NewsObservableState>
         get() = _newsObservableStateLiveData
 
-    override suspend fun getHotHeadlines(category: NewsCategory){
+    override suspend fun getHotHeadlines(category: NewsCategory, query: String?){
         _newsObservableStateLiveData.value = NewsObservableState.Loading
-        val response = newsApi.getTopHeadlines(category)
+        val response = newsApi.getTopHeadlines(category, query)
         response.onSuccess {
             _newsObservableStateLiveData.value = NewsObservableState.Success(it.articles)
         }

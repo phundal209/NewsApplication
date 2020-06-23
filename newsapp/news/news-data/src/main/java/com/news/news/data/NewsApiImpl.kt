@@ -14,9 +14,9 @@ class NewsApiImpl @Inject constructor(
 
     override suspend fun getTopHeadlines(
         category: NewsCategory?,
+        query: String?,
         country: String?,
         sources: String?,
-        query: String?,
         pageSize: Int?,
         page: Int?
     ): Result<NewsResponse> {
