@@ -3,15 +3,23 @@ package com.news.news.presentation
 import androidx.recyclerview.widget.DiffUtil
 import com.news.news.api.NewsArticle
 
-object NewsDiffUtil {
-    val DIFF_CALLBACK : DiffUtil.ItemCallback<NewsArticle> =
-        object : DiffUtil.ItemCallback<NewsArticle>() {
-            override fun areItemsTheSame(oldItem: NewsArticle, newItem: NewsArticle): Boolean {
-                return oldItem.title == newItem.title
-            }
+class NewsDiffUtil(private val oldNewsArticles: List<NewsArticle>,
+                   private val newNewsArticles: List<NewsArticle>): DiffUtil.Callback() {
 
-            override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle): Boolean {
-                return oldItem == newItem
-            }
-        }
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldNewsArticles[oldItemPosition].title == newNewsArticles[newItemPosition].title
+    }
+
+    override fun getOldListSize(): Int =
+        oldNewsArticles.size
+
+    override fun getNewListSize(): Int =
+        newNewsArticles.size
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldNewsArticles[oldItemPosition]
+        val newItem = newNewsArticles[newItemPosition]
+
+        return oldItem.title == newItem.title
+    }
 }

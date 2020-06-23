@@ -25,26 +25,4 @@ class NewsViewModel @Inject constructor(
             }
         }
     }
-//    private val newsDataFactory = NewsDataFactory(newsApi, NewsCategory.Business)
-//    val observableLiveData: LiveData<NewsNetworkState> =
-//        Transformations.switchMap(newsDataFactory.newsDataSourceLiveData) {
-//            it.newsViewStateLiveData
-//        }
-//    var newsArticleLiveData: LiveData<PagedList<NewsArticle>>
-//
-//    init {
-//        val executor = Executors.newFixedThreadPool(5)
-//        val pagedListConfig = PagedList.Config.Builder()
-//            .setEnablePlaceholders(false)
-//            .setInitialLoadSizeHint(10)
-//            .setPageSize(20)
-//            .build()
-//        newsArticleLiveData = LivePagedListBuilder(newsDataFactory, pagedListConfig)
-//            .setFetchExecutor(executor).build()
-//    }
-//
-//    fun getTopHeadlines(category: NewsCategory) {
-//        newsDataFactory.updateCategory(category)
-//        newsDataFactory.newsDataSourceLiveData.value?.invalidate()
-//    }
 }

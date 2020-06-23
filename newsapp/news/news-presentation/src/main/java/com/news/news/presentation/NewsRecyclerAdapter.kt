@@ -1,16 +1,15 @@
 package com.news.news.presentation
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.news.media.api.ImageProvider
 import com.news.news.api.NewsArticle
 import com.news.news.presentation.databinding.NewsViewItemBinding
 
-class NewsRecyclerAdapter(private val context: Context,
-                          private val imageProvider: ImageProvider)
+class NewsRecyclerAdapter(private val imageProvider: ImageProvider,
+                          private val newsItemCallback: NewsItemCallback)
     : RecyclerView.Adapter<NewsItemViewHolder>() {
     private var newsArticles: MutableList<NewsArticle> = mutableListOf()
 
@@ -23,12 +22,17 @@ class NewsRecyclerAdapter(private val context: Context,
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
         val article = newsArticles[position]
         holder.bind(article)
+        holder.itemView.setOnClickListener {
+            newsItemCallback.onNewsArticleClicked(articleUrl = article.url)
+        }
     }
 
-    fun setData(article: List<NewsArticle>) {
+    fun setData(articles: List<NewsArticle>) {
+        val diffCallback = NewsDiffUtil(newsArticles, articles)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         newsArticles.clear()
-        newsArticles.addAll(article)
-        notifyDataSetChanged()
+        newsArticles.addAll(articles)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int =

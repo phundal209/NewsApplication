@@ -1,5 +1,7 @@
 package com.news.news.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
@@ -19,7 +21,7 @@ import javax.inject.Inject
 class NewsFragment @Inject constructor(
     private val imageProvider: ImageProvider,
     private val newsViewModel: NewsViewModel
-) : Fragment() {
+) : Fragment(), NewsItemCallback {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
     private var newsRecyclerAdapter: NewsRecyclerAdapter? = null
@@ -45,7 +47,7 @@ class NewsFragment @Inject constructor(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        newsRecyclerAdapter = NewsRecyclerAdapter(requireContext(), imageProvider)
+        newsRecyclerAdapter = NewsRecyclerAdapter(imageProvider, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -109,5 +111,10 @@ class NewsFragment @Inject constructor(
                 }
             }
         }
+    }
+
+    override fun onNewsArticleClicked(articleUrl: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(articleUrl))
+        activity?.startActivity(intent)
     }
 }
