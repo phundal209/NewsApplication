@@ -28,7 +28,7 @@ package com.news.news.api
 data class NewsResponse(
     val status: NewsStatus,
     val totalResults: Int,
-    val articles: List<NewsArticles>
+    val articles: List<NewsArticle>
 )
 
 sealed class NewsStatus {
@@ -36,7 +36,7 @@ sealed class NewsStatus {
     data class Error(val message: String, val code: String): NewsStatus()
 }
 
-data class NewsArticles(
+data class NewsArticle(
     val source: Source,
     val author: String,
     val title: String,

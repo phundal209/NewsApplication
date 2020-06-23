@@ -2,42 +2,49 @@ package com.news.news.presentation
 
 import androidx.lifecycle.*
 import com.news.news.api.NewsApi
-import com.news.news.api.NewsCategories
+import com.news.news.api.NewsCategory
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class NewsViewModel @Inject constructor(
     private val newsApi: NewsApi
 ): ViewModel() {
-    private val _newsViewStateLiveData: MutableLiveData<NewsViewState> = MutableLiveData()
-    val newsViewStateLiveData: LiveData<NewsViewState>
-        get() = _newsViewStateLiveData
+    private val _newsResponseLiveData: MutableLiveData<NewsObservableState> = MutableLiveData()
+    val newsResponseLiveData: LiveData<NewsObservableState>
+        get() = _newsResponseLiveData
 
-
-    fun getTopHeadlines(
-        country: String?,
-        category: NewsCategories?,
-        sources: String?,
-        query: String?,
-        pageSize: Int? ,
-        page: Int?
-    ) {
-        _newsViewStateLiveData.postValue(NewsViewState.Loading)
+    fun getHotNews(category: NewsCategory) {
+        _newsResponseLiveData.postValue(NewsObservableState.Loading)
         viewModelScope.launch {
-            val topHeadlines = newsApi.getTopHeadlines(
-                country = country,
-                category = category,
-                sources = sources,
-                query = query,
-                pageSize = pageSize,
-                page = page
-            )
-            topHeadlines.onSuccess {
-                _newsViewStateLiveData.postValue(NewsViewState.Success(it))
+            val headlinesResponse = newsApi.getTopHeadlines(category)
+            headlinesResponse.onSuccess {
+                _newsResponseLiveData.postValue(NewsObservableState.Success(it.articles))
             }
-            topHeadlines.onFailure {
-                _newsViewStateLiveData.postValue(NewsViewState.Error(it.message ?: "Api Failure"))
+            headlinesResponse.onFailure {
+                _newsResponseLiveData.postValue(NewsObservableState.Error(it.message ?: "Api Error"))
             }
         }
     }
+//    private val newsDataFactory = NewsDataFactory(newsApi, NewsCategory.Business)
+//    val observableLiveData: LiveData<NewsNetworkState> =
+//        Transformations.switchMap(newsDataFactory.newsDataSourceLiveData) {
+//            it.newsViewStateLiveData
+//        }
+//    var newsArticleLiveData: LiveData<PagedList<NewsArticle>>
+//
+//    init {
+//        val executor = Executors.newFixedThreadPool(5)
+//        val pagedListConfig = PagedList.Config.Builder()
+//            .setEnablePlaceholders(false)
+//            .setInitialLoadSizeHint(10)
+//            .setPageSize(20)
+//            .build()
+//        newsArticleLiveData = LivePagedListBuilder(newsDataFactory, pagedListConfig)
+//            .setFetchExecutor(executor).build()
+//    }
+//
+//    fun getTopHeadlines(category: NewsCategory) {
+//        newsDataFactory.updateCategory(category)
+//        newsDataFactory.newsDataSourceLiveData.value?.invalidate()
+//    }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="12dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        tools:text="Rare 'ring of fire' solar eclipse dims skies across Israel - The Times of Israel"
+        android:id="@+id/headlineText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginTop="8dp"
+        android:id="@+id/descriptionText"
+        tools:text="Most dramatic annular eclipse in years seen from parts of Africa, Asia; only partial eclipse visible in Israel, where it peaked at 8:24 a.m. with 40% of the sun covered by the moon"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/newsImage"
+        tools:src="@android:mipmap/sym_def_app_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:layout_marginTop="8dp"
+        android:id="@+id/contentText"
+        tools:text="Israel’s sun-drenched skies dimmed partially Sunday morning with a rare “ring of fire” solar eclipse sweeping across Africa and Asia as the moon slid between the Earth in the sun in the first annular… [+3020 chars]"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/authorText"
+            android:textColor="@android:color/black"
+            tools:text="Author Name"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/publishedAtText"
+            android:textColor="@android:color/black"
+            tools:text="2020-06-21T05:26:20Z"
+            android:layout_weight="1"
+            android:gravity="end"/>
+    </LinearLayout>
+</LinearLayout>

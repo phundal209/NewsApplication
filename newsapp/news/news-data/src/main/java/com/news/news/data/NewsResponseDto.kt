@@ -1,6 +1,6 @@
 package com.news.news.data
 
-import com.news.news.api.NewsArticles
+import com.news.news.api.NewsArticle
 import com.news.news.api.NewsResponse
 import com.news.news.api.NewsStatus
 import com.news.news.api.Source
@@ -28,8 +28,8 @@ data class ArticlesDto(
     @field:Json(name = "content") val content: String?
 )
 
-fun ArticlesDto.toArticle(): NewsArticles {
-    return NewsArticles(
+fun ArticlesDto.toArticle(): NewsArticle {
+    return NewsArticle(
         source = source.toSource(),
         author = author.orEmpty(),
         title = title.orEmpty(),

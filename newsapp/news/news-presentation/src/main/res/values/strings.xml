@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Search</string>
+    <string name="business_filter">Business</string>
+    <string name="entertainment_filter">Entertainment</string>
+    <string name="general_filter">General</string>
+    <string name="health_filter">Health</string>
+    <string name="science_filter">Science</string>
+    <string name="sports_filter">Sports</string>
+    <string name="tech_filter">Technology</string>
+    <string name="server_error">%s</string>
+</resources>

@@ -1,7 +1,7 @@
 package com.news.news.data
 
 import com.news.news.api.NewsApi
-import com.news.news.api.NewsCategories
+import com.news.news.api.NewsCategory
 import com.news.news.api.NewsFilters
 import com.news.news.api.NewsResponse
 import retrofit2.Retrofit
@@ -13,8 +13,8 @@ class NewsApiImpl @Inject constructor(
     private val newsRestApi = retrofit.create(NewsRestApi::class.java)
 
     override suspend fun getTopHeadlines(
+        category: NewsCategory?,
         country: String?,
-        category: NewsCategories?,
         sources: String?,
         query: String?,
         pageSize: Int?,
@@ -27,7 +27,7 @@ class NewsApiImpl @Inject constructor(
                 query = query,
                 pageSize = pageSize,
                 page = page,
-                category = category?.name).toNewsResponse()
+                category = category?.categorySymbol).toNewsResponse()
         }
     }
 
